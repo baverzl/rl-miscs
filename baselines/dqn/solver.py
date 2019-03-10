@@ -28,7 +28,7 @@ import matplotlib.pyplot as plt
 from model import DQN
 from model import ReplayMemory
 
-env = ObstacleTowerEnv('obstacle-tower-env/ObstacleTower/obstacletower', retro=False, realtime_mode=False)
+env = ObstacleTowerEnv('./obstacle-tower-challenge/ObstacleTower/obstacletower', retro=False, realtime_mode=False)
 
 def set_arguments():
     parser = argparse.ArgumentParser(description='RL')
