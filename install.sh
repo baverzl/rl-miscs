@@ -19,7 +19,7 @@ cd submodules/baselines
 echo "Installing [openai/baselines]"
 sudo apt-get update
 sudo apt-get install cmake libopenmpi-dev python3-dev zlib1g-dev
-pip3 install tensorflow-gpu
+pip3 install tensorflow-gpu==1.8.0
 pip3 install -e .
 cd ../../
 
