@@ -32,8 +32,6 @@ env = ObstacleTowerEnv('./obstacle-tower-challenge/ObstacleTower/obstacletower',
 
 def set_arguments():
     parser = argparse.ArgumentParser(description='RL')
-    parser.add_argument('--path', type=str, default= , type=str, default= '../ObstacleTower/obstacletower')
-    
     parser.add_argument('--batch_size', type=int, default=128)
     parser.add_argument('--gamma', type=float, default=0.999)
     parser.add_argument('--eps_start', type=float, default=0.9)
@@ -93,7 +91,7 @@ class Solver(object):
                 return policy_net(state).max(1)[1].view(1,1)
         
         else:
-            return torch.tensor([[random.randrange(2)]], device=device, dtype=torch.long)
+            return torch.tensor([[random.randrange(2)]], dtype=torch.long)
 
     def optimize_model(self):
         if len(self.memory) < self.batch_size:
@@ -128,8 +126,6 @@ class Solver(object):
         self.opt.step() 
 
      def exploration(self):
-
-
 
 if __name__ == '__main__':
     args = set_arguments()
