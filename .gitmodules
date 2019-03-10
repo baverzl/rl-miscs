@@ -1,0 +1,6 @@
+[submodule "obstacle-tower-env"]
+	path = obstacle-tower-env
+	url = https://github.com/Unity-Technologies/obstacle-tower-env
+[submodule "obstacle-tower-challenge"]
+	path = obstacle-tower-challenge
+	url = https://github.com/Unity-Technologies/obstacle-tower-challenge
