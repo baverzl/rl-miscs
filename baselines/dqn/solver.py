@@ -72,14 +72,15 @@ class Solver(object):
 
         self.build_model(w, h, N)
 
-    def build_model(self, w, h, N)
-        policy_net = DQN(h, w)
-        target_net = DQN(h, w)
+    def build_model(self, w, h, N):
+        self.policy_net = DQN(h, w)
+        self.target_net = DQN(h, w)
 
         self.opt = optim.RMSprop(policy_net.parameters())
         self.memory = ReplayMemory(N)
 
         self.steps_done = 0
+        self.episode_durations = []
 
     def select_action(self, state):
         sample = random.random()
@@ -125,8 +126,70 @@ class Solver(object):
             param.grad.data.clamp_(-1, 1)
         self.opt.step() 
 
-     def exploration(self):
+    def plot_durations():
+        plt.figure(2)
+        plt.clf()
+    
+        durations_t = torch.tensor(self.episode_durations, dtype=torch.float)
+        plt.title('Training...')
+        plt.xlabel('Episode')
+        plt.ylabel('Duration')
+        plt.plot(durations_t.numpy())
+    
+        # Take 100 episode averages and plot them too
+        if len(durations_t) >= 100:
+            means = durations_t.unfold(0, 100, 1).mean(1).view(-1)
+            means = torch.cat((torch.zeros(99), means))
+            plt.plot(means.numpy())
+
+        plt.pause(0.001)  # pause a bit so that plots are updated
+        display.clear_output(wait=True)
+        display.display(plt.gcf())
+
+    def exploration(self, num_episodes = 50):
+        for i_episode in range(num_episodes):
+            env.reset()
+            last_screen = get_screen()
+            current_screen = get_screen()
+
+            O = current_screen - last_screen
+
+            for t in count():
+                # selectr and perform an action
+                action = self.select_action(O)
+                _, reward, done, _ = env.step(action.item())
+                reward = torch.tensor([reward])
+
+                # Observe new state
+                last_screen = current_screen
+                current_screen = get_screen()
+                if not done:
+                    next_O = current_screen - last_screen
+                else:
+                    next_O = None
+
+                self.memory.push(O, action, next_O, reward)
+
+                # Move to the next sate
+                O = next_O
+
+                # Perform one step of the optimization
+                self.optimize_model()
+                if done:
+                    self.episode_durations.append(t+1)
+                    self.plot_durations()
+                    break
+                
+            if i_episode % self.target_update == 0:
+                self.target_net.load_state_dict(self.policy_net.state_dict())
+
+        print('Complete!')
+        env.render()
+        env.close()
+        plt.ioff()
+        plt.show()
 
 if __name__ == '__main__':
     args = set_arguments()
     agent = Solver(args)
+    agent.exploration()
