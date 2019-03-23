@@ -4,6 +4,3 @@
 [submodule "submodules/obstacle-tower-challenge"]
 	path = submodules/obstacle-tower-challenge
 	url = https://github.com/Unity-Technologies/obstacle-tower-challenge
-[submodule "submodules/baselines"]
-	path = submodules/baselines
-	url = https://github.com/openai/baselines
