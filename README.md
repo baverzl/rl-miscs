@@ -5,7 +5,7 @@ This repo contains private research on various topics in reinforcement learning.
 
 ## Requirements
 
-> python 3.6 or 3.7
+> python 3.6, <=3.7.0
 
 ### Setup python virtual environments 
 ```
