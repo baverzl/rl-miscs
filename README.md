@@ -22,10 +22,15 @@ Obstacle Tower challenge provides two useful repositories in order for the basic
 
 ### Installing submodules
 
+* For Linux
 ```
 $ . ./install.sh
 ```
 
+* For OSX
+```
+$ ./install.sh
+```
 
 ## Reinforcement Learning Papers
 
