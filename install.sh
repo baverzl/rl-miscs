@@ -17,8 +17,7 @@ git submodule update
 
 cd submodules/obstacle-tower-env
 echo "Installing [obstacle-tower-env]"
-#pip install -e .
-python setup.py develop
+pip install -e .
 cd ../../
 
 cd submodules/obstacle-tower-challenge
