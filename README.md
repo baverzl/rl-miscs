@@ -5,9 +5,11 @@ This repo contains private research on various topics in reinforcement learning.
 
 ## Requirements
 
+> python 3.6 or 3.7
+
 ### Setup python virtual environments 
 ```
-$ pip3 install virtualenv --user
+$ pip install virtualenv --user
 $ virtualenv -p python3 obstacle-tower-python-env
 $ source obstacle-tower-python-env/bin/activate
 ```
@@ -22,10 +24,15 @@ Obstacle Tower challenge provides two useful repositories in order for the basic
 
 ### Installing submodules
 
+* For Linux
 ```
 $ . ./install.sh
 ```
 
+* For OSX
+```
+$ ./install.sh
+```
 
 ## Reinforcement Learning Papers
 
