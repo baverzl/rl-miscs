@@ -1,7 +1,5 @@
 # Learning to Navigate in Complex Environments
 
-# Learning to Navigate in Complex Environments
-
 In this papers the authors formulate autonomous navigation as a reinforcement learning problem and they showed that the performance of the agent 
 can be improved by using *auxiliary tasks*. The idea behind these *auxiliary tasks* is to provide 'denser training signals' which would help
 solving the problem of sparse rewards. 
